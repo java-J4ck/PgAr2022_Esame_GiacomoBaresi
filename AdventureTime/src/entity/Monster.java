@@ -1,7 +1,11 @@
 package entity;
 
 import object.Weapon;
-
+/**
+ * classe che rappresenta un mostro
+ * 
+ *
+ */
 public class Monster  extends Entity{
 	private String name;
 	private int hp;//punti vita di default
@@ -20,7 +24,7 @@ public class Monster  extends Entity{
 		return hp;
 	}
 
-	public void Damage(int damage) {
+	public void Damage(int damage) {//classe che toglie il danno
 		this.hp -= damage;
 	}
 
@@ -40,7 +44,7 @@ public class Monster  extends Entity{
 		return Mweapon;
 	}
 	
-	public boolean isDead() {
+	public boolean isDead() {//controlla se il mostro è morto
 		if(hp<=0) return true;
 		return false;
 	}

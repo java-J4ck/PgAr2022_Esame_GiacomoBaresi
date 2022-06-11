@@ -1,6 +1,10 @@
 package entity;
-
-public class Chest extends Entity{
+/**
+ * classe che rappresenta una cesta
+ * 
+ *
+ */
+public class Chest extends Entity{//non finita
 
 	public Chest(int[] coord, char symbol) {
 		super(coord, symbol);

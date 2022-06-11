@@ -1,5 +1,9 @@
 package entity;
-
+/**
+ * classe che rappresenta un'entita
+ * 
+ *
+ */
 public class Entity {
 	private int[] coord;//coordinate entita
 	private char symbol;//simbolo entita

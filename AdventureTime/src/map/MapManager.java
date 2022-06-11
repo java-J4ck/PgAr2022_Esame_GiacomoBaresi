@@ -4,7 +4,11 @@ import java.util.ArrayList;
 
 import entity.*;
 
-
+/**
+ * classe che gestisce la mappa e gli spostamenti
+ * 
+ *
+ */
 public class MapManager {
 	private char[][] map;
 	private int mapWidth;
@@ -14,7 +18,10 @@ public class MapManager {
 	private ArrayList<Entity> allWall = new ArrayList<Entity>();
 	private Player player;
 	
-	
+	/**
+	 * con i dati estratti  crea la mappa
+	 * 
+	 */
 	public MapManager(EntitiesExtractor e){
 		this.mapHeight=e.getMapHeight();
 		this.mapWidth=e.getMapWidth();
@@ -35,6 +42,10 @@ public class MapManager {
 		}
 	}
 	
+	/**
+	 * visualizza la mappa
+	 * 
+	 */
 	public String visulizeMap() {
 		StringBuffer map_string= new StringBuffer("");
 		for(int i=0;i<mapHeight;i++) {
@@ -45,7 +56,11 @@ public class MapManager {
 		}
 		return map_string.toString();
 	}
-	
+	/**
+	 * sposta il giocatore con WASD
+	 * 
+	 * 
+	 */
 	public boolean playerMovement(char command) {
 		int[] coord = player.getCoord().clone();
 		if(command=='A') {

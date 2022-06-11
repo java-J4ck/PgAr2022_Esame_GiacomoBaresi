@@ -13,13 +13,17 @@ import javax.xml.stream.XMLStreamReader;
 import entity.*;
 import main.InputDati;
 import randomGeneration.MonsterGenerator;
-
+/**
+ * classe che preleva tutte le entita dal file xml
+ * 
+ *
+ */
 public class EntitiesExtractor {
 	
-	private ArrayList<Monster> allMonster= new ArrayList<Monster>();
-	private ArrayList<Chest> allchest = new ArrayList<Chest>();
-	private ArrayList<Entity> allWall = new ArrayList<Entity>();
-	private Player player;
+	private ArrayList<Monster> allMonster= new ArrayList<Monster>();//mostri
+	private ArrayList<Chest> allchest = new ArrayList<Chest>();//ceste
+	private ArrayList<Entity> allWall = new ArrayList<Entity>();//muri
+	private Player player;//giocatore
 	private File fromFile;
 	private XMLInputFactory xmlif = null;
 	private XMLStreamReader xmlr = null;
@@ -27,7 +31,7 @@ public class EntitiesExtractor {
 	private int mapWidth;
 	private String fileName;
 	
-	public EntitiesExtractor(String fileName,File fromFile) {
+	public EntitiesExtractor(String fileName,File fromFile) {//si sceglie il file
 		
 		this.fromFile = fromFile;
 		extractEntities();
@@ -43,7 +47,7 @@ public class EntitiesExtractor {
 		try {
 			while (xmlr.hasNext()) { 
 				 switch (xmlr.getEventType()) { 
-					 case XMLStreamConstants.START_ELEMENT: 
+					 case XMLStreamConstants.START_ELEMENT: //dall'elemento iniziale si prendono le dimensioni della mappa
 						 name=xmlr.getLocalName();
 						 if(name.equals("mappa")) {
 							 mapHeight = Integer.parseInt(xmlr.getAttributeValue(0));
@@ -54,31 +58,31 @@ public class EntitiesExtractor {
 							 x=0;
 						 }
 						 break;
-					 case XMLStreamConstants.END_ELEMENT:   // Evento END_ELEMENT: Lettura di un tag di chiusura
+					 case XMLStreamConstants.END_ELEMENT:   
 						    if (name.equals("cell")) x++;
 							break;
-					 case XMLStreamConstants.CHARACTERS: 
+					 case XMLStreamConstants.CHARACTERS: //dalle celle si prende l'entita
 						 if (name.equals("cell") && xmlr.getText().trim().length() > 0) {
 							 text=xmlr.getText();
-							 if(text.charAt(0)=='M') {
+							 if(text.charAt(0)=='M') {//se l'entita è un mostro si crea un mostro 
 								 int[] coord= {x,y};
 								 allMonster.add(m.monsterGenerator(coord));
 								 
 							 }
-							 else if(text.charAt(0)=='C') {
+							 else if(text.charAt(0)=='C') {// se è una chest si crea una chest
 								 int[] coord= {x,y};
 								 allchest.add(new Chest(coord,'C'));
 							
 							 }
-							 else if(text.charAt(0)=='#') {
+							 else if(text.charAt(0)=='#') {// se è un muro si crea un muro
 								 int[] coord= {x,y};
 								 allWall.add(new Entity(coord,'#'));
 								
 							 }
 							 //else if(text.charAt(0)=='P') ;
-							 else if(text.charAt(0)=='O') {
+							 else if(text.charAt(0)=='O') {// se è il giocatore si crea il giocatore
 								 int[] coord= {x,y};
-								 player=new Player(coord,'P',InputDati.leggiStringaNonVuota("inserisci un nome per il tuo personaggio: "));;
+								 player=new Player(coord,'O',InputDati.leggiStringaNonVuota("inserisci un nome per il tuo personaggio: "));;
 							 }
 						 }
 						 
@@ -94,7 +98,7 @@ public class EntitiesExtractor {
 		}
 		finally {
 			try {
-				xmlr.close();
+				xmlr.close();// si chiude il file
 			} catch (XMLStreamException e) {
 				System.out.println("unable to close XML file");
 			}
@@ -102,7 +106,7 @@ public class EntitiesExtractor {
 	}
 	
 	
-	private void initialization() {
+	private void initialization() {//inizializzazione per la lettura
 		
 		try {
 		 xmlif = XMLInputFactory.newInstance();

@@ -3,7 +3,11 @@ package entity;
 import java.util.ArrayList;
 
 import object.*;
-
+/**
+ * classe che rappresenta il giocatore
+ * 
+ *
+ */
 public class Player extends Entity {
 	private String name;
 	private int hp = 20;//punti vita di default
@@ -11,7 +15,7 @@ public class Player extends Entity {
 	private int def = 5;//difesa di default
 	private  GameObject object=null;
 	
-	public static class Inventario{
+	public static class Inventario{//classe che rappresenta l'inventario(non finita)
 		ArrayList<Weapon> allWeapon=new ArrayList<Weapon>();
 		
 	}
@@ -46,11 +50,14 @@ public class Player extends Entity {
 		return name;
 	}
 
-
+	/**
+	 * metodo per danni subiti
+	 * 
+	 */
 	public void Damage(int damage) {
-		if(object.getType()==ObjType.SHIELD) {
+		if(object.getType()==ObjType.SHIELD) {//controlla se si ha uno scudo
 			((Shield) object).Damage(damage);
-			if(((Shield) object).isBroken()) object=null;
+			if(((Shield) object).isBroken()) this.object=null;
 		}
 		else this.hp -= damage;
 	}
