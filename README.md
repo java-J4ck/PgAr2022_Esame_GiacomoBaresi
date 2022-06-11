@@ -3,17 +3,17 @@
 
 |                |                      |
 | -------------- | ---------------------|
-| Nome 			 |** < Nome >**         |
-| Cognome        |** < Cognome >**      |
-| Matricola      |** < Matricola >**    |
-| Corso di Studi | ** < C . D . S . >** |
+| Nome 			 |**Giacomo**           |
+| Cognome        |**Baresi**            |
+| Matricola      |**735878**            |
+| Corso di Studi | **ING INFORMATICA**  |
 
 ## Moduli Implementati
 
 <! - - Spuntare con una ’X ’ i moduli implementati -->
 
 - Modulo 1
-- [ ] Modulo 1. A : Lettura XML e creazione mappa
+- [X] Modulo 1. A : Lettura XML e creazione mappa
 - [ ] Modulo 1. B : Creazione casuale della mappa
 - [ ] Modulo 2: Scale e miniboss
 - [ ] Modulo 3: Pathfinding dei mostri

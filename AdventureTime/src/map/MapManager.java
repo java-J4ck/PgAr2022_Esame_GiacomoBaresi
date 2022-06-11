@@ -2,10 +2,8 @@ package map;
 
 import java.util.ArrayList;
 
-import entity.Chest;
-import entity.Entity;
-import entity.Monster;
-import entity.Player;
+import entity.*;
+
 
 public class MapManager {
 	private char[][] map;
@@ -49,7 +47,7 @@ public class MapManager {
 	}
 	
 	public boolean playerMovement(char command) {
-		int[] coord = player.getCoord();
+		int[] coord = player.getCoord().clone();
 		if(command=='A') {
 			coord[1]--;
 			if(checkArrive(coord)) {
@@ -96,6 +94,15 @@ public class MapManager {
 		if(coord[1]>=mapWidth | coord[1]<0) return false;
 		if(map[coord[0]][coord[1]]=='#') return false;
 		return true;
+	}
+	
+	public void checkBattle() {
+		for(Monster m : allMonster) {
+			if(m.getCoord()==player.getCoord()) {
+				BattleManager.Battle.battle(player, m);
+				break;
+			}
+		}
 	}
 	
 }

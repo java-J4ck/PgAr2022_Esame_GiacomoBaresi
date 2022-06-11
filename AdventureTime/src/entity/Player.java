@@ -2,8 +2,7 @@ package entity;
 
 import java.util.ArrayList;
 
-import object.GameObject;
-import object.Weapon;
+import object.*;
 
 public class Player extends Entity {
 	private String name;
@@ -48,8 +47,12 @@ public class Player extends Entity {
 	}
 
 
-	public int getHp() {
-		return hp;
+	public void Damage(int damage) {
+		if(object.getType()==ObjType.SHIELD) {
+			((Shield) object).Damage(damage);
+			if(((Shield) object).isBroken()) object=null;
+		}
+		else this.hp -= damage;
 	}
 
 

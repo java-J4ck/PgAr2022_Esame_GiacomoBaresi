@@ -37,7 +37,8 @@ public class Main {
 			 		System.out.println("GRAZIE PER AVER GIOCATO");
 			 		System.exit(0);
 				case 1:
-					lvl1.playerMovement(InputDati.leggiChar("inserisci comando(WASD): "));
+					if(!lvl1.playerMovement(InputDati.leggiChar("inserisci comando(WASD): ")))
+						System.out.println("NON SI PUO ANDARE IN QUELLA CASELLA! :-( ");;
 					break;
 				
 				default:
@@ -54,9 +55,5 @@ public class Main {
 
 
 
-	public static void movement(MapManager m) {
-		
-		
-		
-	}
+	
 }

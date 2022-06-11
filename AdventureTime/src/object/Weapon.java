@@ -9,6 +9,14 @@ public class Weapon extends GameObject{
 		this.name = name;
 		this.power = power;
 	}
+
+	public WeaponName getName() {
+		return name;
+	}
+
+	public int getPower() {
+		return power;
+	}
 	
 	
 }

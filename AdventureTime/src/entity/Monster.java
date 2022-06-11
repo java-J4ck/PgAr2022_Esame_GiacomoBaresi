@@ -20,8 +20,8 @@ public class Monster  extends Entity{
 		return hp;
 	}
 
-	public void setHp(int hp) {
-		this.hp = hp;
+	public void Damage(int damage) {
+		this.hp -= damage;
 	}
 
 	public String getName() {
@@ -40,7 +40,10 @@ public class Monster  extends Entity{
 		return Mweapon;
 	}
 	
-	
+	public boolean isDead() {
+		if(hp<=0) return true;
+		return false;
+	}
 	
 	
 
