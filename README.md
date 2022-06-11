@@ -1,4 +1,4 @@
-# PgAr2022_Esame_ < NomeCognome >
+# PgAr2022_Esame_GiacomoBaresi
 ## Candidato
 
 |                |                      |
@@ -10,7 +10,7 @@
 
 ## Moduli Implementati
 
-<! - - Spuntare con una ’X ’ i moduli implementati -->
+
 
 - Modulo 1
 - [X] Modulo 1. A : Lettura XML e creazione mappa
