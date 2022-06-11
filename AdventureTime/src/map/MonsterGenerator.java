@@ -26,7 +26,7 @@ public class MonsterGenerator {
 		int rand;
 		while(s.length()>0) {
 			finalPermutation+=s.charAt(rand=randInt(0, s.length()-1));
-			s.replace(s.charAt(rand), '\0');
+			s=s.substring(0,rand)+s.substring(rand+1,s.length());
 		}
 		return finalPermutation;
 	}

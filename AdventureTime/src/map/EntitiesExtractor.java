@@ -10,16 +10,14 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 
 
-import entity.Chest;
-import entity.Entity;
-import entity.Monster;
-import entity.Player;
+import entity.*;
+import main.InputDati;
 
 public class EntitiesExtractor {
 	
-	private ArrayList<Monster> allMonster;
-	private ArrayList<Chest> allchest;
-	private ArrayList<Entity> allWall;
+	private ArrayList<Monster> allMonster= new ArrayList<Monster>();
+	private ArrayList<Chest> allchest = new ArrayList<Chest>();
+	private ArrayList<Entity> allWall = new ArrayList<Entity>();
 	private Player player;
 	private File fromFile;
 	private XMLInputFactory xmlif = null;
@@ -40,6 +38,7 @@ public class EntitiesExtractor {
 		int x=-1,y=-1;
 		String name="";
 		String text="";
+		MonsterGenerator m= new MonsterGenerator("dijkstra");
 		try {
 			while (xmlr.hasNext()) { 
 				 switch (xmlr.getEventType()) { 
@@ -49,16 +48,37 @@ public class EntitiesExtractor {
 							 mapHeight = Integer.parseInt(xmlr.getAttributeValue(0));
 							 mapWidth = Integer.parseInt(xmlr.getAttributeValue(1));
 						 }
-						 else if(name.equals("row"))  y++;
+						 else if(name.equals("row"))  {
+							 y++;
+							 x=0;
+						 }
 						 break;
+					 case XMLStreamConstants.END_ELEMENT:   // Evento END_ELEMENT: Lettura di un tag di chiusura
+						    if (name.equals("cell")) x++;
+							break;
 					 case XMLStreamConstants.CHARACTERS: 
-						 if (name.equals("cell")) {
-							 x++;
+						 if (name.equals("cell") && xmlr.getText().trim().length() > 0) {
 							 text=xmlr.getText();
-							 if(text.charAt(0)=='M') ;
-							 else if(text.charAt(0)=='#') ;
+							 if(text.charAt(0)=='M') {
+								 int[] coord= {x,y};
+								 allMonster.add(m.monsterGenerator(coord));
+								 
+							 }
+							 else if(text.charAt(0)=='C') {
+								 int[] coord= {x,y};
+								 allchest.add(new Chest(coord,'C'));
+							
+							 }
+							 else if(text.charAt(0)=='#') {
+								 int[] coord= {x,y};
+								 allWall.add(new Entity(coord,'#'));
+								
+							 }
 							 //else if(text.charAt(0)=='P') ;
-							 else if(text.charAt(0)=='O') ;
+							 else if(text.charAt(0)=='O') {
+								 int[] coord= {x,y};
+								 player=new Player(coord,'P',InputDati.leggiStringaNonVuota("inserisci un nome per il tuo personaggio: "));;
+							 }
 						 }
 						 
 						 break;
@@ -68,7 +88,6 @@ public class EntitiesExtractor {
 				}
 		} 
 		catch (XMLStreamException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			
 		}
@@ -80,6 +99,7 @@ public class EntitiesExtractor {
 			}
 		}
 	}
+	
 	
 	private void initialization() {
 		
