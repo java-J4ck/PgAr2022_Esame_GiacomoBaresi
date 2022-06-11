@@ -12,6 +12,7 @@ import javax.xml.stream.XMLStreamReader;
 
 import entity.*;
 import main.InputDati;
+import randomGeneration.MonsterGenerator;
 
 public class EntitiesExtractor {
 	

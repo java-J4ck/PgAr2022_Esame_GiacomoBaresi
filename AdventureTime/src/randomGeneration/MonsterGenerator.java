@@ -1,4 +1,4 @@
-package map;
+package randomGeneration;
 
 
 import java.util.Random;
@@ -15,7 +15,7 @@ public class MonsterGenerator {
 	}
 
 	public Monster monsterGenerator(int[] coord) {
-		return new Monster(coord,'M',permutation(),randInt(15, 25),null);
+		return new Monster(coord,'M',permutation(),randInt(15, 25),WeaponGenerator.getWeapon());
 		
 		
 	}

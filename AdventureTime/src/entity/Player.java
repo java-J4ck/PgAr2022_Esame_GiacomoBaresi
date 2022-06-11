@@ -7,7 +7,7 @@ public class Player extends Entity {
 	private int hp = 20;//punti vita di default
 	private int attck = 5;//attacco di default
 	private int def = 5;//difesa di default
-	private  GameObject object;
+	private  GameObject object=null;
 	
 	public void setHp(int hp) {
 		this.hp = hp;
