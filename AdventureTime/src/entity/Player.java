@@ -1,6 +1,9 @@
 package entity;
 
+import java.util.ArrayList;
+
 import object.GameObject;
+import object.Weapon;
 
 public class Player extends Entity {
 	private String name;
@@ -8,6 +11,12 @@ public class Player extends Entity {
 	private int attck = 5;//attacco di default
 	private int def = 5;//difesa di default
 	private  GameObject object=null;
+	
+	public static class Inventario{
+		ArrayList<Weapon> allWeapon=new ArrayList<Weapon>();
+		
+	}
+	
 	
 	public void setHp(int hp) {
 		this.hp = hp;
@@ -53,6 +62,10 @@ public class Player extends Entity {
 		return def;
 	}
 	
+	public boolean isDead() {
+		if(hp<=0) return true;
+		return false;
+	}
 	
 	
 

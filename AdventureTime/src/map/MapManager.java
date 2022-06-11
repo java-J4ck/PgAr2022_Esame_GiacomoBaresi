@@ -1,5 +1,7 @@
 package map;
 
+import java.util.ArrayList;
+
 import entity.Chest;
 import entity.Entity;
 import entity.Monster;
@@ -9,13 +11,19 @@ public class MapManager {
 	private char[][] map;
 	private int mapWidth;
 	private int mapHeight;
-	
-	
+	private ArrayList<Monster> allMonster= new ArrayList<Monster>();
+	private ArrayList<Chest> allchest = new ArrayList<Chest>();
+	private ArrayList<Entity> allWall = new ArrayList<Entity>();
+	private Player player;
 	
 	
 	public MapManager(EntitiesExtractor e){
 		this.mapHeight=e.getMapHeight();
 		this.mapWidth=e.getMapWidth();
+		this.allMonster=e.getAllMonster();
+		this.allchest=e.getAllchest();
+		this.allWall=e.getAllWall();
+		this.player=e.getPlayer();
 		map= new char[mapHeight][mapWidth];
 		Player p=e.getPlayer();
 		map[p.getCoord()[0]][p.getCoord()[1]]='O';
@@ -40,6 +48,54 @@ public class MapManager {
 		return map_string.toString();
 	}
 	
+	public boolean playerMovement(char command) {
+		int[] coord = player.getCoord();
+		if(command=='A') {
+			coord[1]--;
+			if(checkArrive(coord)) {
+				player.setCoord(coord);
+				map[coord[0]][coord[1]]='O';
+				map[coord[0]][coord[1]+1]='.';
+			}
+			else return false;
+		}
+		if(command=='D') {
+			coord[1]++;
+			if(checkArrive(coord)) {
+				player.setCoord(coord);
+				map[coord[0]][coord[1]]='O';
+				map[coord[0]][coord[1]-1]='.';
+			}
+			else return false;
+		}
+		if(command=='S') {
+			coord[0]++;
+			if(checkArrive(coord)) {
+				player.setCoord(coord);
+				map[coord[0]][coord[1]]='O';
+				map[coord[0]-1][coord[1]]='.';
+			}
+			else return false;
+		}
+		if(command=='W') {
+			coord[0]--;
+			if(checkArrive(coord)) {
+				player.setCoord(coord);
+				map[coord[0]][coord[1]]='O';
+				map[coord[0]+1][coord[1]]='.';
+			}
+			else return false;
+		}
+		
+		return true;
+		
+	}
 	
+	private boolean checkArrive(int[] coord) {
+		if(coord[0]>=mapHeight | coord[0]<0) return false;
+		if(coord[1]>=mapWidth | coord[1]<0) return false;
+		if(map[coord[0]][coord[1]]=='#') return false;
+		return true;
+	}
 	
 }

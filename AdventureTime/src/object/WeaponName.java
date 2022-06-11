@@ -8,7 +8,8 @@ public enum WeaponName {
 	LANCIA_GRANATE("lancia granate"),
 	REVOLVER_ARNALDO("revolver arnaldo"),
 	ARCO_MOSTRUOSO("arco mostruoso"),
-	CANNONE_P("cannone planetarium");
+	CANNONE_P("cannone planetarium"),
+	CECCHINO_D("fucile di precisione di dijkstra");//arma del boss
 	
 	
 	private String name;
