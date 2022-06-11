@@ -58,7 +58,7 @@ public class MapManager {
 	}
 	/**
 	 * sposta il giocatore con WASD
-	 * 
+	 * ritorna falso se la casella dove si vuole andare è inaccessibile
 	 * 
 	 */
 	public boolean playerMovement(char command) {
@@ -104,17 +104,18 @@ public class MapManager {
 		
 	}
 	
-	private boolean checkArrive(int[] coord) {
+	private boolean checkArrive(int[] coord) {//controlla se la casella è accessibile
 		if(coord[0]>=mapHeight | coord[0]<0) return false;
 		if(coord[1]>=mapWidth | coord[1]<0) return false;
 		if(map[coord[0]][coord[1]]=='#') return false;
 		return true;
 	}
 	
-	public void checkBattle() {
+	public void checkBattle() {//una volta spostati si controlla se c'è una battaglia
 		for(Monster m : allMonster) {
-			if(m.getCoord()==player.getCoord()) {
+			if(m.getCoord()==player.getCoord()) {//se le coordinate di un mostro sono le stesse del giocatore allora c'è una battaglia
 				BattleManager.Battle.battle(player, m);
+				if(m.isDead()) allMonster.remove(m);//se è morto il mostro rimuove m
 				break;
 			}
 		}

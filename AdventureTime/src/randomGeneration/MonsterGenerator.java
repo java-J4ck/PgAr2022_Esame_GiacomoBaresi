@@ -4,7 +4,11 @@ package randomGeneration;
 import java.util.Random;
 
 import entity.Monster;
-
+/**
+ * classe che generaa un mostro in modo casuale
+ * 
+ *
+ */
 public class MonsterGenerator {
 	
 	private String stringToPermute;
@@ -20,7 +24,7 @@ public class MonsterGenerator {
 		
 	}
 	
-	private String permutation() {
+	private String permutation() {//genera una permutazione randomica di stringToPermute
 		String s=stringToPermute;
 		String finalPermutation="";
 		int rand;
@@ -33,7 +37,7 @@ public class MonsterGenerator {
 	
 	
 	
-	public static int randInt(int min, int max) {
+	public static int randInt(int min, int max) {//genera numeri casuali
 
 	    Random rand= new Random();
 	    int randomNum = rand.nextInt((max - min) + 1) + min;

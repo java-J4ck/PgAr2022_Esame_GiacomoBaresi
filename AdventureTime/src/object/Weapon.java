@@ -1,8 +1,12 @@
 package object;
-
+/**
+ * classe che rappresenta un arma
+ * @author Giaco
+ *
+ */
 public class Weapon extends GameObject{
-	WeaponName name;
-	int power;
+	WeaponName name;// tipo di arma
+	int power;// potenza dell'arma
 	
 	public Weapon(ObjType type, WeaponName name, int power) {
 		super(type);

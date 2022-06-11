@@ -5,11 +5,15 @@ import java.util.Random;
 import object.ObjType;
 import object.Weapon;
 import object.WeaponName;
-
+/**
+ * genera una arma in modo casuale
+ * 
+ *
+ */
 public class WeaponGenerator {
 	public static Weapon getWeapon() {
 		ObjType t=ObjType.WEAPON;
-		int power=randInt(35,55);
+		int power=randInt(35,55);//restituisce l'arma in base all potenza
 		if(power<=37) return new Weapon(t,WeaponName.SPADA_MARCIA,power);
 		else if(power<=40) return new Weapon(t,WeaponName.SPADA_ADAMANTIO,power);
 		else if(power<=43) return new Weapon(t,WeaponName.CLAVA_MOSTRO,power);

@@ -1,5 +1,5 @@
 package object;
-
+//tutte le armi disponibili
 public enum WeaponName {
 	SPADA_MARCIA("spada marcia"),
 	SPADA_ADAMANTIO("spada di adamantio"),

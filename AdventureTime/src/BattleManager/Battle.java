@@ -17,6 +17,7 @@ public class Battle {
 	public static void battle(Player p, Monster m) {
 		while(!p.isDead() && !m.isDead()) {//si infliggono danni finche uno muore
 			m.Damage(getDamage(p));
+			if(m.isDead()) break;
 			p.Damage(getDamage(m));
 		}
 	}

@@ -48,7 +48,7 @@ public class Main {
 			}
 			
 		}
-		
+		if(player.isDead())System.out.println("SEI MORTO\n");
 		System.out.println("GRAZIE PER AVER GIOCATO");
 		
 	}

@@ -1,5 +1,9 @@
 package object;
-
+/**
+ * classe che rappresenta uno scudo
+ * @author Giaco
+ *
+ */
 public class Shield extends GameObject {
 	private int hp=5;
 	
@@ -17,7 +21,7 @@ public class Shield extends GameObject {
 		this.hp -= damage;
 	}
 	
-	public boolean isBroken() {
+	public boolean isBroken() {// dice se lo scudo si è rotto
 		if(hp<=0) return true;
 		return false;
 	}
